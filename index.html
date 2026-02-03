@@ -1,10 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edumerce - Academic Freelance Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <!-- Hero Section -->
+    <section class="py-20 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
+                Edumerce
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed">
+                Connect with expert tutors worldwide. Post jobs, negotiate securely, pay only after satisfaction.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                <a href="pages/register.php" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+                    🚀 Start Posting Jobs
+                </a>
+                <a href="pages/login.php" class="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300">
+                    👋 Login
+                </a>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mt-16">
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+                    <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">💰</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Secure Escrow</h3>
+                    <p>50% upfront, 50% after approval. Never pay until satisfied.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+                    <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">🌍</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Global Experts</h3>
+                    <p>Connect with qualified tutors from 100+ countries.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+                    <div class="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">⭐</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Rated Service</h3>
+                    <p>Real reviews from real students. Choose with confidence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<?php
-if (isset($_SESSION['user_id'])) {
-    header('Location: pages/dashboard.php');
-} else {
-    header('Location: pages/login.php');
-}
-exit;
-?>
+    <!-- Quick Access -->
+    <section class="bg-white py-16 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-12">Get Started in 30 Seconds</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="text-left">
+                    <div class="bg-blue-50 p-8 rounded-2xl">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4">📝 I'm a Student</h3>
+                        <ul class="space-y-2 text-lg text-gray-700">
+                            <li>✅ Post assignments instantly</li>
+                            <li>✅ Negotiate directly with experts</li>
+                            <li>✅ Pay 50% only after agreement</li>
+                            <li>✅ Download after final approval</li>
+                        </ul>
+                        <a href="pages/register.php?role=student" class="mt-6 inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold">
+                            Post My First Job →
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="text-left">
+                    <div class="bg-purple-50 p-8 rounded-2xl">
+                        <h3 class="text-2xl font-bold text-purple-800 mb-4">👨‍🏫 I'm an Expert</h3>
+                        <ul class="space-y-2 text-lg text-gray-700">
+                            <li>✅ Browse student jobs</li>
+                            <li>✅ Bid & negotiate terms</li>
+                            <li>✅ Get paid securely</li>
+                            <li>✅ Build 5-star reputation</li>
+                        </ul>
+                        <a href="pages/register.php?role=provider" class="mt-6 inline-block bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-xl font-semibold">
+                            Join as Expert →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <h3 class="text-2xl font-bold mb-4">Ready to Transform Learning?</h3>
+            <p class="text-lg mb-8 max-w-2xl mx-auto">Join thousands of students and experts already using Edumerce for smarter study solutions.</p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+                <a href="pages/register.php" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold">
+                    Start Free Today
+                </a>
+                <a href="pages/login.php" class="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-3 rounded-xl font-semibold transition-all duration-300">
+                    Have Account? Login
+                </a>
+            </div>
+            
+            <p class="text-sm text-gray-400">&copy; 2026 Edumerce. All rights reserved. Secure payments. Expert tutors. Student success.</p>
+        </div>
+    </footer>
+</body>
+</html>
+
 
