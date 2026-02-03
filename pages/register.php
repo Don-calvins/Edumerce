@@ -52,14 +52,15 @@ if ($_POST) {
                 <input type="password" name="password" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
             
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2">Role</label>
-                <select name="role" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="">Select Role</option>
-                    <option value="student">Student (Post Jobs)</option>
-                    <option value="provider">Tutor/Expert (Do Jobs)</option>
-                </select>
-            </div>
+           <div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2">Role</label>
+    <select name="role" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <option value="">Select Role</option>
+        <option value="student" <?php echo ($_GET['role'] ?? '') === 'student' ? 'selected' : ''; ?>>Student (Post Jobs)</option>
+        <option value="provider" <?php echo ($_GET['role'] ?? '') === 'provider' ? 'selected' : ''; ?>>Tutor/Expert (Do Jobs)</option>
+    </select>
+</div>
+
             
             <div class="mb-6">
                 <label class="block text-gray-700 text-sm font-bold mb-2">Country</label>
