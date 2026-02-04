@@ -57,4 +57,40 @@ function emailExists($email) {
     $stmt->execute([$email]);
     return $stmt->rowCount() > 0;
 }
+
+// Post a new job (for students only)
+function postJob($student_id, $title, $description, $subject, $level, $budget, $deadline) {
+    global $pdo;
+    
+    $stmt = $pdo->prepare("INSERT INTO jobs (student_id, title, description, subject, level, budget, deadline) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    
+    if ($stmt->execute([$student_id, $title, $description, $subject, $level, $budget, $deadline])) {
+        return ['success' => true, 'message' => 'Job posted successfully!', 'job_id' => $pdo->lastInsertId()];
+    }
+    return ['success' => false, 'message' => 'Failed to post job'];
+}
+
+// Get all open jobs (for providers to browse)
+function getOpenJobs() {
+    global $pdo;
+    $stmt = $pdo->query("SELECT j.*, u.name as student_name FROM jobs j JOIN users u ON j.student_id = u.id WHERE j.status = 'posted' ORDER BY j.created_at DESC");
+    return $stmt->fetchAll();
+}
+
+// Get user's jobs (for students)
+function getUserJobs($user_id) {
+    global $pdo;
+    $stmt = $pdo->prepare("SELECT j.*, a.provider_id FROM jobs j LEFT JOIN agreements a ON j.id = a.job_id WHERE j.student_id = ? ORDER BY j.created_at DESC");
+    $stmt->execute([$user_id]);
+    return $stmt->fetchAll();
+}
+
+// Get single job details
+function getJob($job_id) {
+    global $pdo;
+    $stmt = $pdo->prepare("SELECT j.*, u.name as student_name FROM jobs j JOIN users u ON j.student_id = u.id WHERE j.id = ?");
+    $stmt->execute([$job_id]);
+    return $stmt->fetch();
+}
 ?>
+
