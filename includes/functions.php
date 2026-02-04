@@ -150,6 +150,64 @@ function getAgreement($agreement_id) {
     $stmt->execute([$agreement_id]);
     return $stmt->fetch();
 }
+
+// Process 50% upfront payment
+function processUpfrontPayment($agreement_id, $customer_email) {
+    require_once '../config/stripe.php';
+    
+    try {
+        $agreement = getAgreement($agreement_id);
+        if (!$agreement) return ['success' => false, 'message' => 'Agreement not found'];
+        
+        $upfront_amount = $agreement['agreed_price'] * 0.5;
+        
+        // Create PaymentIntent for 50%
+        $payment_intent = \Stripe\PaymentIntent::create([
+            'amount' => intval($upfront_amount * 100), // cents
+            'currency' => 'usd',
+            'customer' => $customer_email,
+            'metadata' => [
+                'agreement_id' => $agreement_id,
+                'type' => 'upfront_50'
+            ]
+        ]);
+        
+        // Record payment intent
+        global $pdo;
+        $stmt = $pdo->prepare("INSERT INTO payments (agreement_id, amount, type, stripe_id, status) VALUES (?, ?, 'upfront', ?, 'pending')");
+        $stmt->execute([$agreement_id, $upfront_amount, $payment_intent->id]);
+        
+        return ['success' => true, 'client_secret' => $payment_intent->client_secret, 'payment_intent' => $payment_intent->id];
+        
+    } catch (Exception $e) {
+        return ['success' => false, 'message' => $e->getMessage()];
+    }
+}
+
+// Confirm payment success (webhook or frontend)
+function confirmUpfrontPayment($payment_intent_id) {
+    require_once '../config/stripe.php';
+    
+    try {
+        global $pdo;
+        $payment_intent = \Stripe\PaymentIntent::retrieve($payment_intent_id);
+        
+        if ($payment_intent->status === 'succeeded') {
+            $stmt = $pdo->prepare("UPDATE payments SET status = 'held' WHERE stripe_id = ?");
+            $stmt->execute([$payment_intent_id]);
+            
+            // Update job status
+            $stmt = $pdo->prepare("UPDATE jobs j JOIN agreements a ON j.id = a.job_id SET j.status = 'accepted' WHERE a.id = (SELECT agreement_id FROM payments WHERE stripe_id = ?)");
+            $stmt->execute([$payment_intent_id]);
+            
+            return ['success' => true];
+        }
+        return ['success' => false, 'message' => 'Payment not confirmed'];
+    } catch (Exception $e) {
+        return ['success' => false, 'message' => $e->getMessage()];
+    }
+}
 ?>
+
 
 
