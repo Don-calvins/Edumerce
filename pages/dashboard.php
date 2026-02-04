@@ -35,15 +35,16 @@ $userName = $_SESSION['name'];
         
         <?php if ($role === 'student'): ?>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white p-8 rounded-xl text-center transition duration-200">
-                    <h3 class="text-2xl font-bold mb-2">📝 Post New Job</h3>
-                    <p>Create assignment, set budget & deadline</p>
-                </a>
-                <a href="#" class="bg-green-500 hover:bg-green-600 text-white p-8 rounded-xl text-center transition duration-200">
-                    <h3 class="text-2xl font-bold mb-2">💼 My Jobs</h3>
-                    <p>View active jobs & hired experts</p>
-                </a>
-                <a href="#" class="bg-purple-500 hover:bg-purple-600 text-white p-8 rounded-xl text-center transition duration-200">
+  <a href="post-job.php" class="bg-blue-500 hover:bg-blue-600 text-white p-8 rounded-xl text-center transition duration-200">
+         <h3 class="text-2xl font-bold mb-2">📝 Post New Job</h3>
+         <p>Create assignment, set budget & deadline</p>
+       </a>
+   <a href="my-jobs.php" class="bg-green-500 hover:bg-green-600 text-white p-8 rounded-xl text-center transition duration-200">
+         <h3 class="text-2xl font-bold mb-2">💼 My Jobs</h3>
+         <p>View active jobs & hired experts</p>
+       </a>
+
+   <a href="#" class="bg-purple-500 hover:bg-purple-600 text-white p-8 rounded-xl text-center transition duration-200">
                     <h3 class="text-2xl font-bold mb-2">⭐ Reviews</h3>
                     <p>Rate completed work</p>
                 </a>
@@ -51,9 +52,11 @@ $userName = $_SESSION['name'];
             
         <?php elseif ($role === 'provider'): ?>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <a href="#" class="bg-indigo-500 hover:bg-indigo-600 text-white p-8 rounded-xl text-center transition duration-200">
-                    <h3 class="text-2xl font-bold mb-2">🔍 Find Jobs</h3>
-                    <p>Browse student assignments</p>
+                
+  <a href="jobs.php" class="bg-indigo-500 hover:bg-indigo-600 text-white p-8 rounded-xl text-center transition duration-200">
+            <h3 class="text-2xl font-bold mb-2">🔍 Find Jobs</h3>
+            <p>Browse student assignments</p>
+   </a>
                 </a>
                 <a href="#" class="bg-yellow-500 hover:bg-yellow-600 text-white p-8 rounded-xl text-center transition duration-200">
                     <h3 class="text-2xl font-bold mb-2">💰 Earnings</h3>
