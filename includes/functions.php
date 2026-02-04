@@ -92,5 +92,64 @@ function getJob($job_id) {
     $stmt->execute([$job_id]);
     return $stmt->fetch();
 }
+
+// Start negotiation for a job (create agreement)
+function startNegotiation($job_id, $provider_id, $price, $deadline) {
+    global $pdo;
+    
+    // Check if job exists and is available
+    $job = getJob($job_id);
+    if (!$job || $job['status'] !== 'posted') {
+        return ['success' => false, 'message' => 'Job not available'];
+    }
+    
+    $stmt = $pdo->prepare("UPDATE jobs SET status = 'negotiating' WHERE id = ?");
+    $stmt->execute([$job_id]);
+    
+    $stmt = $pdo->prepare("INSERT INTO agreements (job_id, provider_id, agreed_price, agreed_deadline) VALUES (?, ?, ?, ?)");
+    if ($stmt->execute([$job_id, $provider_id, $price, $deadline])) {
+        return ['success' => true, 'message' => 'Negotiation started!', 'agreement_id' => $pdo->lastInsertId()];
+    }
+    return ['success' => false, 'message' => 'Failed to start negotiation'];
+}
+
+// Send chat message
+function sendMessage($agreement_id, $sender_id, $message) {
+    global $pdo;
+    $stmt = $pdo->prepare("INSERT INTO messages (agreement_id, sender_id, message) VALUES (?, ?, ?)");
+    if ($stmt->execute([$agreement_id, $sender_id, $message])) {
+        return ['success' => true, 'message_id' => $pdo->lastInsertId()];
+    }
+    return ['success' => false];
+}
+
+// Get messages for agreement
+function getMessages($agreement_id) {
+    global $pdo;
+    $stmt = $pdo->prepare("
+        SELECT m.*, u.name, u.role 
+        FROM messages m 
+        JOIN users u ON m.sender_id = u.id 
+        WHERE m.agreement_id = ? 
+        ORDER BY m.created_at ASC
+    ");
+    $stmt->execute([$agreement_id]);
+    return $stmt->fetchAll();
+}
+
+// Get agreement details
+function getAgreement($agreement_id) {
+    global $pdo;
+    $stmt = $pdo->prepare("
+        SELECT a.*, j.title, j.student_id, j.budget, u.name as provider_name 
+        FROM agreements a 
+        JOIN jobs j ON a.job_id = j.id 
+        JOIN users u ON a.provider_id = u.id 
+        WHERE a.id = ?
+    ");
+    $stmt->execute([$agreement_id]);
+    return $stmt->fetch();
+}
 ?>
+
 
