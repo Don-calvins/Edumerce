@@ -81,6 +81,11 @@ if (!$agreement) {
                             class="flex-1 md:flex-none bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300">
                         ✅ Accept Terms & Pay 50%
                     </button>
+        <a href="payment.php?agreement=<?php echo $agreement_id; ?>" 
+             class="flex-1 md:flex-none bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300">
+                        ✅ Pay 50% Upfront ($<?php echo number_format($agreement['agreed_price'] * 0.5, 2); ?>)
+                            </a>
+
                 <?php else: ?>
                     <button onclick="finalizeTerms(<?php echo $agreement_id; ?>)" 
                             class="flex-1 md:flex-none bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300">
