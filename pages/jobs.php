@@ -75,9 +75,11 @@ $jobs = getOpenJobs();
                         <span class="text-lg font-bold text-red-600"><?php echo date('M j, Y g:i A', strtotime($job['deadline'])); ?></span>
                     </div>
                     
-                    <a href="#" class="w-full block bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-xl text-center shadow-xl hover:shadow-2xl transition-all duration-300 text-lg">
-                        💬 Message Student & Negotiate
-                    </a>
+                    <a href="view-job.php?id=<?php echo $job['id']; ?>" 
+              class="w-full block bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-xl text-center shadow-xl hover:shadow-2xl transition-all duration-300 text-lg">
+             💬 Message Student & Negotiate
+                 </a>
+
                 </div>
             <?php endforeach; ?>
         </div>
