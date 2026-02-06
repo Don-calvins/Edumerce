@@ -65,33 +65,42 @@
 </head>
 <body class="bg-white overflow-x-hidden">
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center gap-2">
-                    <div class="w-10 h-10 gradient-btn rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                        EM
-                    </div>
-                    <span class="text-2xl font-bold gradient-text">Edumerce</span>
-                </div>
-                
+     <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <!-- Logo -->
+            <div class="logo-section">
+                <div class="logo-icon">EM</div>
+                <span class="logo-text">Edumerce</span>
             </div>
-        </div>
-    
-  <header class="navbar">
-    <div class="container nav-wrap">
-     
-      <nav class="nav-links" id="navLinks">
-       
-                    <a href="#features" class="text-gray-600 hover:text-gray-900 transition">Features</a>
-                    <a href="#how-it-works" class="text-gray-600 hover:text-gray-900 transition">How It Works</a>
-                    <a href="#testimonials" class="text-gray-600 hover:text-gray-900 transition">Testimonials</a>
-                    <a href="pages/login.php" class="text-gray-600 hover:text-gray-900 transition">Login</a>
-                    <a href="pages/register.php" class="gradient-btn text-white px-6 py-2 rounded-lg font-semibold">Sign Up</a>
-      </nav>
 
-      <div class="menu-btn" onclick="toggleMenu()">☰</div>
-    </div>
+            <!-- Desktop Navigation Links -->
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="pages/login.php">Login</a>
+                <a href="pages/register.php" class="signup-btn">Sign Up</a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#features" onclick="closeMenu()">Features</a>
+            <a href="#how-it-works" onclick="closeMenu()">How It Works</a>
+            <a href="#testimonials" onclick="closeMenu()">Testimonials</a>
+            <a href="pages/login.php" onclick="closeMenu()">Login</a>
+            <a href="pages/register.php" class="signup-btn" onclick="closeMenu()">Sign Up</a>
+        </div>
+    </nav>
+
   </header>
     <!-- Hero Section -->
     <section class="relative pt-32 pb-20 px-4 overflow-hidden">
