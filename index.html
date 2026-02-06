@@ -1,116 +1,503 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edumerce - Academic Freelance Marketplace</title>
+    <title>Edumerce - Connect with Expert Tutors Worldwide</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .gradient-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .blob {
+            position: absolute;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            opacity: 0.1;
+            animation: blob-animation 8s infinite;
+        }
+        
+        @keyframes blob-animation {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+    </style>
 </head>
-<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
-    <!-- Hero Section -->
-    <section class="py-20 px-4">
-        <div class="max-w-6xl mx-auto text-center">
-            <h1 class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
-                Edumerce
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed">
-                Connect with expert tutors worldwide. Post jobs, negotiate securely, pay only after satisfaction.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-                <a href="pages/register.php" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
-                    🚀 Start Posting Jobs
-                </a>
-                <a href="pages/login.php" class="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300">
-                    👋 Login
-                </a>
+<body class="bg-white overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-2">
+                    <div class="w-10 h-10 gradient-btn rounded-lg flex items-center justify-center text-white font-bold text-lg">
+                        E
+                    </div>
+                    <span class="text-2xl font-bold gradient-text">Edumerce</span>
+                </div>
+                <div class="hidden md:flex gap-8 items-center">
+                    <a href="#features" class="text-gray-600 hover:text-gray-900 transition">Features</a>
+                    <a href="#how-it-works" class="text-gray-600 hover:text-gray-900 transition">How It Works</a>
+                    <a href="#testimonials" class="text-gray-600 hover:text-gray-900 transition">Testimonials</a>
+                    <a href="pages/login.php" class="text-gray-600 hover:text-gray-900 transition">Login</a>
+                    <a href="pages/register.php" class="gradient-btn text-white px-6 py-2 rounded-lg font-semibold">Sign Up</a>
+                </div>
+                <button class="md:hidden text-gray-600">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
             </div>
-            
-            <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mt-16">
-                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-                    <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                        <span class="text-2xl">💰</span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 px-4 overflow-hidden">
+        <div class="blob w-96 h-96 top-0 right-0"></div>
+        <div class="blob w-96 h-96 bottom-0 left-0" style="animation-delay: 4s;"></div>
+        
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                        <span class="gradient-text">Expert Help</span>
+                        <br>
+                        <span class="text-gray-900">When You Need It</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                        Connect with vetted tutors worldwide. Get assignments solved, concepts explained, and grades improved—all with secure payments and guaranteed satisfaction.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                        <a href="pages/register.php?role=student" class="gradient-btn text-white px-8 py-4 rounded-xl text-lg font-semibold text-center">
+                            <i class="fas fa-rocket mr-2"></i> Post Your First Job
+                        </a>
+                        <a href="pages/register.php?role=provider" class="border-2 border-gray-300 text-gray-900 hover:border-purple-600 hover:text-purple-600 px-8 py-4 rounded-xl text-lg font-semibold text-center transition">
+                            <i class="fas fa-chalkboard-user mr-2"></i> Become a Tutor
+                        </a>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Secure Payment Channel</h3>
-                    <p>50% upfront, 50% after approval. Never pay until satisfied.</p>
+                    <div class="flex items-center gap-6 text-sm text-gray-600">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-green-500"></i>
+                            <span>4.9★ from 2,500+ reviews</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-lock text-blue-500"></i>
+                            <span>100% Secure Payments</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-                    <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                        <span class="text-2xl">🌍</span>
+                
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-purple-100 to-blue-100 rounded-3xl p-8 card-hover">
+                        <div class="space-y-6">
+                            <div class="bg-white rounded-2xl p-4 shadow-lg">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-10 h-10 bg-purple-200 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-user text-purple-600"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-gray-900">Sarah M.</p>
+                                        <p class="text-xs text-gray-500">Expert Tutor</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 text-sm">"Just completed a calculus assignment. Excellent work!"</p>
+                            </div>
+                            
+                            <div class="bg-white rounded-2xl p-4 shadow-lg">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-10 h-10 bg-blue-200 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-user text-blue-600"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-gray-900">Alex K.</p>
+                                        <p class="text-xs text-gray-500">Student</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 text-sm">"Got my essay back in 24 hours. Perfect quality!"</p>
+                            </div>
+                            
+                            <div class="bg-white rounded-2xl p-4 shadow-lg">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-10 h-10 bg-green-200 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-user text-green-600"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-gray-900">Emma R.</p>
+                                        <p class="text-xs text-gray-500">Student</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 text-sm">"Affordable and reliable. Highly recommended!"</p>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Global Experts</h3>
-                    <p>Connect with qualified tutors from 100+ countries.</p>
-                </div>
-                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-                    <div class="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                        <span class="text-2xl">⭐</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Rated Service</h3>
-                    <p>Real reviews from real students. Choose with confidence.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Quick Access -->
-    <section class="bg-white py-16 px-4">
-        <div class="max-w-6xl mx-auto text-center">
-            <h2 class="text-3xl font-bold text-gray-800 mb-12">Get Started in 30 Seconds</h2>
+    <!-- Stats Section -->
+    <section class="bg-gradient-to-r from-purple-600 to-blue-600 py-16 px-4 text-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <h3 class="text-4xl font-bold mb-2">2,500+</h3>
+                    <p class="text-purple-100">Active Experts</p>
+                </div>
+                <div>
+                    <h3 class="text-4xl font-bold mb-2">15,000+</h3>
+                    <p class="text-purple-100">Jobs Completed</p>
+                </div>
+                <div>
+                    <h3 class="text-4xl font-bold mb-2">$2.5M+</h3>
+                    <p class="text-purple-100">Payments Processed</p>
+                </div>
+                <div>
+                    <h3 class="text-4xl font-bold mb-2">98%</h3>
+                    <p class="text-purple-100">Satisfaction Rate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Why Choose Edumerce?</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Everything you need for academic success, all in one platform</p>
+            </div>
             
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="text-left">
-                    <div class="bg-blue-50 p-8 rounded-2xl">
-                        <h3 class="text-2xl font-bold text-blue-800 mb-4">📝 I'm a Student</h3>
-                        <ul class="space-y-2 text-lg text-gray-700">
-                            <li>✅ Post assignments instantly</li>
-                            <li>✅ Negotiate directly with experts</li>
-                            <li>✅ Pay 50% only after agreement</li>
-                            <li>✅ Download after final approval</li>
-                        </ul>
-                        <a href="pages/register.php?role=student" class="mt-6 inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold">
-                            Post My First Job →
-                        </a>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="card-hover bg-white p-8 rounded-2xl border border-gray-100">
+                    <div class="w-16 h-16 gradient-btn rounded-2xl flex items-center justify-center mb-6 text-white text-2xl">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Safe & Secure</h3>
+                    <p class="text-gray-600 mb-4">50% upfront, 50% after approval. Your money is protected until you're satisfied with the work.</p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Encrypted payments</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Money-back guarantee</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Dispute resolution</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="card-hover bg-white p-8 rounded-2xl border border-gray-100">
+                    <div class="w-16 h-16 gradient-btn rounded-2xl flex items-center justify-center mb-6 text-white text-2xl">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Global Experts</h3>
+                    <p class="text-gray-600 mb-4">Access vetted tutors from 100+ countries, specialized in every subject imaginable.</p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Verified credentials</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Multiple languages</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>24/7 availability</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="card-hover bg-white p-8 rounded-2xl border border-gray-100">
+                    <div class="w-16 h-16 gradient-btn rounded-2xl flex items-center justify-center mb-6 text-white text-2xl">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Quality Guaranteed</h3>
+                    <p class="text-gray-600 mb-4">Real reviews from real students. Choose tutors based on verified ratings and past work.</p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Transparent reviews</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Performance metrics</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Quality standards</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="card-hover bg-white p-8 rounded-2xl border border-gray-100">
+                    <div class="w-16 h-16 gradient-btn rounded-2xl flex items-center justify-center mb-6 text-white text-2xl">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Lightning Fast</h3>
+                    <p class="text-gray-600 mb-4">Post a job and get bids within minutes. Most assignments completed within 24-48 hours.</p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Instant notifications</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Quick turnaround</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Real-time chat</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="card-hover bg-white p-8 rounded-2xl border border-gray-100">
+                    <div class="w-16 h-16 gradient-btn rounded-2xl flex items-center justify-center mb-6 text-white text-2xl">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Affordable Pricing</h3>
+                    <p class="text-gray-600 mb-4">Competitive rates with transparent pricing. No hidden fees or surprise charges.</p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Flexible budgets</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>No platform fees</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Negotiate freely</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="card-hover bg-white p-8 rounded-2xl border border-gray-100">
+                    <div class="w-16 h-16 gradient-btn rounded-2xl flex items-center justify-center mb-6 text-white text-2xl">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">24/7 Support</h3>
+                    <p class="text-gray-600 mb-4">Our support team is always ready to help with any questions or issues.</p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Live chat support</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Email assistance</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Help center</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-20 px-4 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">How It Works</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Get expert help in 4 simple steps</p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-6 relative">
+                <!-- Step 1 -->
+                <div class="relative">
+                    <div class="bg-white p-8 rounded-2xl text-center card-hover">
+                        <div class="w-16 h-16 gradient-btn rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4 font-bold">
+                            1
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Post Your Job</h3>
+                        <p class="text-gray-600">Describe your assignment, set your budget, and add any specific requirements.</p>
+                    </div>
+                    <div class="hidden md:block absolute top-1/2 -right-3 w-6 h-1 bg-gradient-to-r from-purple-600 to-blue-600"></div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="relative">
+                    <div class="bg-white p-8 rounded-2xl text-center card-hover">
+                        <div class="w-16 h-16 gradient-btn rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4 font-bold">
+                            2
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Receive Bids</h3>
+                        <p class="text-gray-600">Qualified experts review your job and submit their proposals within minutes.</p>
+                    </div>
+                    <div class="hidden md:block absolute top-1/2 -right-3 w-6 h-1 bg-gradient-to-r from-purple-600 to-blue-600"></div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="relative">
+                    <div class="bg-white p-8 rounded-2xl text-center card-hover">
+                        <div class="w-16 h-16 gradient-btn rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4 font-bold">
+                            3
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Collaborate</h3>
+                        <p class="text-gray-600">Chat with your tutor, negotiate terms, and pay 50% upfront to get started.</p>
+                    </div>
+                    <div class="hidden md:block absolute top-1/2 -right-3 w-6 h-1 bg-gradient-to-r from-purple-600 to-blue-600"></div>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="bg-white p-8 rounded-2xl text-center card-hover">
+                    <div class="w-16 h-16 gradient-btn rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4 font-bold">
+                        4
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Download & Pay</h3>
+                    <p class="text-gray-600">Review the completed work and pay the remaining 50% once you're satisfied.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">What Our Users Say</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Join thousands of satisfied students and experts</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="card-hover bg-white p-8 rounded-2xl border border-gray-100">
+                    <div class="flex items-center gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6">"I was struggling with organic chemistry. Found an amazing tutor on Edumerce who not only solved my problems but explained everything clearly. My grade went from C to A!"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-purple-200 rounded-full flex items-center justify-center">
+                            <i class="fas fa-user text-purple-600"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-900">Jessica Chen</p>
+                            <p class="text-sm text-gray-500">Chemistry Student</p>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="text-left">
-                    <div class="bg-purple-50 p-8 rounded-2xl">
-                        <h3 class="text-2xl font-bold text-purple-800 mb-4">👨‍🏫 I'm an Expert</h3>
-                        <ul class="space-y-2 text-lg text-gray-700">
-                            <li>✅ Browse student jobs</li>
-                            <li>✅ Bid & negotiate terms</li>
-                            <li>✅ Get paid securely</li>
-                            <li>✅ Build 5-star reputation</li>
-                        </ul>
-                        <a href="pages/register.php?role=provider" class="mt-6 inline-block bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-xl font-semibold">
-                            Join as Expert →
-                        </a>
+                <!-- Testimonial 2 -->
+                <div class="card-hover bg-white p-8 rounded-2xl border border-gray-100">
+                    <div class="flex items-center gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6">"As a tutor, Edumerce is the best platform I've found. Reliable payments, professional students, and fair pricing. I make $500+ every week!"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-blue-200 rounded-full flex items-center justify-center">
+                            <i class="fas fa-user text-blue-600"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-900">Michael Rodriguez</p>
+                            <p class="text-sm text-gray-500">Expert Tutor</p>
+                        </div>
                     </div>
                 </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="card-hover bg-white p-8 rounded-2xl border border-gray-100">
+                    <div class="flex items-center gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6">"Edumerce saved my semester! I was juggling work and school, and I found affordable help for my programming assignments. Highly recommend!"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center">
+                            <i class="fas fa-user text-green-600"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-900">Sarah Williams</p>
+                            <p class="text-sm text-gray-500">Computer Science Student</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Ready to Transform Your Academic Journey?</h2>
+            <p class="text-xl mb-8 text-purple-100">Join 10,000+ students and experts already using Edumerce for smarter study solutions.</p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="pages/register.php?role=student" class="bg-white text-purple-600 hover:bg-gray-100 px-8 py-4 rounded-xl text-lg font-semibold transition">
+                    <i class="fas fa-rocket mr-2"></i> Post Your First Job
+                </a>
+                <a href="pages/register.php?role=provider" class="border-2 border-white text-white hover:bg-white hover:text-purple-600 px-8 py-4 rounded-xl text-lg font-semibold transition">
+                    <i class="fas fa-chalkboard-user mr-2"></i> Become an Expert
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12 px-4">
-        <div class="max-w-6xl mx-auto text-center">
-            <h3 class="text-2xl font-bold mb-4">Ready to Transform Learning?</h3>
-            <p class="text-lg mb-8 max-w-2xl mx-auto">Join thousands of students and experts already using Edumerce for smarter study solutions.</p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-                <a href="pages/register.php" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold">
-                    Start Free Today
-                </a>
-                <a href="pages/login.php" class="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-3 rounded-xl font-semibold transition-all duration-300">
-                    Have Account? Login
-                </a>
+    <footer class="bg-gray-900 text-gray-400 py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center text-white font-bold">
+                            E
+                        </div>
+                        <span class="text-lg font-bold text-white">Edumerce</span>
+                    </div>
+                    <p class="text-sm">Connecting students with expert tutors worldwide for academic success.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-white mb-4">For Students</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Post a Job</a></li>
+                        <li><a href="#" class="hover:text-white transition">Browse Tutors</a></li>
+                        <li><a href="#" class="hover:text-white transition">How It Works</a></li>
+                        <li><a href="#" class="hover:text-white transition">Pricing</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-white mb-4">For Experts</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Join as Tutor</a></li>
+                        <li><a href="#" class="hover:text-white transition">Browse Jobs</a></li>
+                        <li><a href="#" class="hover:text-white transition">Earnings</a></li>
+                        <li><a href="#" class="hover:text-white transition">Resources</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                        <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition">Terms of Service</a></li>
+                    </ul>
+                </div>
             </div>
             
-            <p class="text-sm text-gray-400">&copy; 2026 Edumerce. All rights reserved. Secure payments. Expert tutors. Student success.</p>
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-sm">&copy; 2026 Edumerce. All rights reserved. Secure payments. Expert tutors. Student success.</p>
+                    <div class="flex gap-4 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 </body>
 </html>
-
-
