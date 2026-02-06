@@ -248,8 +248,8 @@
     </style>
 </head>
 <body class="bg-white overflow-x-hidden">
+   <body class="bg-white overflow-x-hidden">
     <!-- Navigation -->
-     <!-- Navigation -->
     <nav>
         <div class="nav-container">
             <!-- Logo -->
@@ -284,8 +284,6 @@
             <a href="pages/register.php" class="signup-btn" onclick="closeMenu()">Sign Up</a>
         </div>
     </nav>
-
-  </header>
     <!-- Hero Section -->
     <section class="relative pt-32 pb-20 px-4 overflow-hidden">
         <div class="blob w-96 h-96 top-0 right-0"></div>
@@ -697,5 +695,53 @@
             </div>
         </div>
     </footer>
+       <!-- JavaScript -->
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const body = document.body;
+
+        function toggleMenu() {
+            menuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            body.classList.toggle('menu-open');
+        }
+
+        function closeMenu() {
+            menuToggle.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            body.classList.remove('menu-open');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const isClickInsideNav = event.target.closest('nav');
+            
+            if (!isClickInsideNav && mobileMenu.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+
+        // Close menu on window resize (when going from mobile to desktop)
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                closeMenu();
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    closeMenu();
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
